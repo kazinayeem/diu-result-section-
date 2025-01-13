@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const logger = require("morgan");
 const app = express();
-const port = 3000 || process.env.PORT;
 
 // Set EJS as the templating engine
 app.set("view engine", "ejs");
@@ -62,6 +61,6 @@ app.post("/results", async (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+app.listen(8080, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

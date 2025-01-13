@@ -62,5 +62,5 @@ app.post("/results", async (req, res) => {
 
 // Start the server
 app.listen(8080, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running`);
 });

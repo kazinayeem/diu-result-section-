@@ -14,23 +14,29 @@
     <form action="/results" method="POST" class="mt-4">
       <div class="mb-3">
         <label for="studentIds" class="form-label">Student IDs (comma-separated)</label>
-        <label for="">232-35-15,232-35-12, ..</label>
         <textarea class="form-control" id="studentIds" name="studentIds" placeholder="Enter multiple Student IDs separated by commas, e.g., 232-35-022, 232-35-001" rows="4" required></textarea>
       </div>
       <div class="mb-3">
-        <label for="semesterId" class="form-label">Semester ID</label>
-        <input type="text" class="form-control" id="semesterId" name="semesterId" placeholder="Enter Semester ID (243, 242, etc.)" required>
+        <label for="semesterId" class="form-label">Semester</label>
+        <select class="form-control" id="semesterId" name="semesterId" required>
+          <option value="">-- Select Semester --</option>
+          <% semesterList.forEach(semester => { %>
+            <option value="<%= semester.semesterId %>">
+              <%= semester.semesterYear %> - <%= semester.semesterName %>
+            </option>
+          <% }); %>
+        </select>
       </div>
       <button type="submit" class="btn btn-primary w-100">Fetch Results</button>
     </form>
   </div>
-   <!-- Footer -->
-   <footer class="text-center mt-5 py-3 bg-light">
+
+  <!-- Footer -->
+  <footer class="text-center mt-5 py-3 bg-light">
     <p>&copy; <span id="year"></span> Kazi Nayeem</p>
   </footer>
 
   <script>
-    // Set the current year dynamically
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>

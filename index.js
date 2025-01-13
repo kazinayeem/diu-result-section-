@@ -12,8 +12,18 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route for home page (Form to input multiple student IDs and semester ID)
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", async (req, res) => {
+  try {
+    // Fetch semester list from the API
+    const response = await axios.get("http://software.diu.edu.bd:8006/result/semesterList");
+    const semesterList = response.data;
+
+    // Render the form with the semester list
+    res.render("index", { semesterList });
+  } catch (error) {
+    console.error("Error fetching semester list:", error.message);
+    res.status(500).send("Failed to fetch semester list.");
+  }
 });
 
 // Fetch and display results for multiple students
